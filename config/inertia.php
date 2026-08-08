@@ -7,16 +7,29 @@ return [
     | Server Side Rendering
     |--------------------------------------------------------------------------
     |
-    | These options configures if and how Inertia uses Server Side Rendering
-    | to pre-render each initial request made to your application's pages
-    | so that server rendered HTML is delivered for the user's browser.
+    | Server-side rendering is disabled for this application. The memories
+    | gallery is a viewport-dependent client-side layout (its column count is
+    | resolved from `window.innerWidth`), so an SSR pre-render (which has no
+    | `window`) can only match it at the cost of a viewport-width handshake
+    | into the SSR server — a complexity that was deliberately not pursued.
+    | SSR was producing hydration mismatches on refresh and the "images
+    | enlarge" regression (SSR HTML rendered a single column that Vue could
+    | not fully patch; SPA navigation, which renders client-side, looked
+    | correct).
     |
-    | See: https://inertiajs.com/server-side-rendering
+    | Trade-off accepted: with SSR off, first paint is JS-dependent (the mount
+    | div is blank until the bundle boots) instead of pre-rendered HTML. For a
+    | session-authenticated app with no SEO benefit, that cost is worth it.
+    |
+    | NOTE: if SSR is ever re-enabled (`enabled => true`), it also requires an
+    | SSR server running (`php artisan inertia:start-ssr`) AND the gallery's
+    | initial render must be made SSR-consistent — otherwise the mismatches
+    | above return.
     |
     */
 
     'ssr' => [
-        'enabled' => true,
+        'enabled' => false,
         'url' => 'http://127.0.0.1:13714',
         // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
 

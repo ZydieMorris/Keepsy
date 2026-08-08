@@ -20,6 +20,7 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
+import { useMemoryUpload } from '@/composables/useMemoryUpload';
 import { memories, people, shared } from '@/routes';
 import type { NavItem } from '@/types';
 
@@ -34,8 +35,10 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
 const page = usePage();
 const user = computed(() => page.props.auth.user);
 
+const { open: openUpload } = useMemoryUpload();
+
 const handleUploadClick = () => {
-    toast('Uploads are coming soon');
+    openUpload();
 };
 
 const handleInvitationsClick = () => {
@@ -154,7 +157,7 @@ const handleInvitationsClick = () => {
                                 <Plus class="size-5" stroke-width="1.75" />
                             </Button>
                         </TooltipTrigger>
-                        <TooltipContent side="bottom">Upload</TooltipContent>
+                        <TooltipContent side="bottom">Add memories</TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
 

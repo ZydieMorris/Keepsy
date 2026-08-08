@@ -30,7 +30,7 @@ import { login, register } from '@/routes';
                 </span>
             </Link>
 
-            <nav class="flex items-center gap-1.5" aria-label="Auth">
+            <!-- <nav class="flex items-center gap-1.5" aria-label="Auth">
                 <Link
                     :href="login()"
                     class="rounded-full px-4 py-2 text-sm font-medium text-neutral-500 transition-colors duration-300 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
@@ -43,7 +43,7 @@ import { login, register } from '@/routes';
                 >
                     Get started
                 </Link>
-            </nav>
+            </nav> -->
         </header>
 
         <!-- Hero -->

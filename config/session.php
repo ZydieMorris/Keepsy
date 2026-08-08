@@ -143,7 +143,7 @@ return [
     |
     */
 
-    'path' => env('SESSION_PATH', '/'),
+    'path' => filter_var(env('SESSION_PATH'), FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^/#']]) ?: '/',
 
     /*
     |--------------------------------------------------------------------------
